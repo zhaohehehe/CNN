@@ -3,3 +3,5 @@
 
 参考：https://github.com/BigPeng/JavaCNN
 	  https://github.com/sunnythree/CupCnn
+	  https://blog.csdn.net/tina_ttl/article/details/51033660
+	  https://blog.csdn.net/lianzhng/article/details/80652744(全连接层)
