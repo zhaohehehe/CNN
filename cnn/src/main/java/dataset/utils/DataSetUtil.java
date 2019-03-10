@@ -12,7 +12,7 @@ import dataset.DataSetElement;
 
 public class DataSetUtil {
 
-	/** 参见mnist数据集数据存储格式：http://yann.lecun.com/exdb/mnist/ **/
+	/** 鍙傝mnist鏁版嵁闆嗘暟鎹瓨鍌ㄦ牸寮忥細http://yann.lecun.com/exdb/mnist/ **/
 
 	private static final int MAGIC_OFFSET = 0;
 	private static final int OFFSET_SIZE = 4; // in bytes
@@ -104,7 +104,6 @@ public class DataSetUtil {
 			imageInputStream.close();
 			throw new IOException("Bad image. Rows and columns do not equal " + ROWS + "x" + COLUMNS);
 		}
-
 		for (int i = 0; i < numberOfLabels; i++) {
 			int label = labelBytes[OFFSET_SIZE + ITEMS_SIZE + i];
 			byte[] imageData = Arrays.copyOfRange(imageBytes, (i * IMAGE_SIZE) + IMAGE_OFFSET,

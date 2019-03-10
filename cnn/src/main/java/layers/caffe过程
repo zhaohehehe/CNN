@@ -1,0 +1,30 @@
+data (50, 3, 227, 227) 网络的输入，batch_number = 50，图像为227*227*3的RGB图像
+
+conv1 (50, 96, 55, 55) 第一个conv层的输出图像大小为55*55，feature maps个数为96
+
+pool1 (50, 96, 27, 27) 第一个pool层的图像尺寸为27*27，feature map个数为96
+
+norm1 (50, 96, 27, 27) 第一个norm层的图像尺寸为27*27，feature map个数为96
+conv2 (50, 256, 27, 27) 第二个conv层的图像尺寸为27*27，feature map个数为256
+
+pool2 (50, 256, 13, 13) 第二个pool层的图像尺寸为13*13，feature map个数为256
+
+norm2 (50, 256, 13, 13) 第二个norm层的图像尺寸为13*13，feature map个数为256
+conv3 (50, 384, 13, 13) 第三个conv层的图像尺寸为13*13，feature map个数为384
+conv4 (50, 384, 13, 13) 第四个conv层的图像尺寸为13*13，feature map个数为384
+conv5 (50, 256, 13, 13) 第五个conv层的图像尺寸为13*13，feature map个数为256
+
+pool5 (50, 256, 6, 6) 第五个pool层的图像尺寸为13*13，feature map个数为256
+fc6 (50, 4096)
+第六个fc层的图像尺寸为4096
+fc7 (50, 4096)
+第七个fc层的图像尺寸为4096
+fc8 (50, 1000)
+第八个fc层的图像尺寸为1000
+prob (50, 1000)
+probablies层的尺寸为1000
+--------------------- 
+作者：tina_ttl 
+来源：CSDN 
+原文：https://blog.csdn.net/tina_ttl/article/details/51033660 
+版权声明：本文为博主原创文章，转载请附上博文链接！

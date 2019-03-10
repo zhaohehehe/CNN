@@ -21,16 +21,20 @@ public class MatrixUtil {
 		String labelPath = "data/mnist/train-labels.idx1-ubyte";
 		String objPath = "data/mnist/train-images.idx3-ubyte";
 		List<DataSetElement> dataSet = DataSetUtil.readMnistDataSetUtil(labelPath, objPath);
-		// 测试部分图片即可
+		// 娴嬭瘯閮ㄥ垎鍥剧墖鍗冲彲
 		for (int i = 0; i < dataSet.size() && i < 20; i++) {
 			DataSetElement element = dataSet.get(i);
 			MatrixUtil.matrix2Image(MatrixUtil.array2Matrix(element.objData, DataSetUtil.ROWS, DataSetUtil.COLUMNS),
-					"D:\\Workspace\\zhaohe\\mnist\\" + i + element.label + ".png");
+					"D:\\zhaohe\\workspace\\CNN\\mnist\\", "" + i + "_" + element.label + ".png");
 		}
 	}
 
-	public static void matrix2Image(byte[][] matrix, String saveImagePath) throws IOException {
-		File file = new File(saveImagePath);
+	public static void matrix2Image(byte[][] matrix, String saveImagePath, String saveImageName) throws IOException {
+		File directory = new File(saveImagePath);
+		if (!directory.exists()) {
+			directory.mkdirs();
+		}
+		File file = new File(saveImagePath + saveImageName);
 		if (!file.exists()) {
 			file.createNewFile();
 		}
@@ -42,6 +46,10 @@ public class MatrixUtil {
 		BufferedImage bufImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < colums; j++) {
+				// 鏁扮粍锛歔0,1,2,3,4,5]
+				// matrix琛屽垪寮忥細
+				// |0,2,4|
+				// |1,3,5|
 				if (matrix[j][i] != 0) {
 					bufImg.setRGB(i, j, matrix[j][i]);
 				}
@@ -55,23 +63,23 @@ public class MatrixUtil {
 	public static byte[][] array2Matrix(byte[] arr, int rows, int colums) throws Exception {
 		{
 			if (arr.length > rows * colums) {
-				throw new Exception("目标矩阵rows*colums大于数组长度，转换失败！");
+				throw new Exception("鐩爣鐭╅樀rows*colums澶т簬鏁扮粍闀垮害锛岃浆鎹㈠け璐ワ紒");
 			}
 			if (arr.length < rows * colums) {
-				throw new Exception("目标矩阵rows*colums小于数组长度，转换失败！");
+				throw new Exception("鐩爣鐭╅樀rows*colums灏忎簬鏁扮粍闀垮害锛岃浆鎹㈠け璐ワ紒");
 			}
 			byte[][] matrix = new byte[rows][colums];
 			for (int row = 0; row < rows; row++) {
 				matrix[row] = Arrays.copyOfRange(arr, row * colums, (row + 1) * colums);
 
 			}
+			// 鎵撳嵃鍥剧墖鍍忕礌淇℃伅
 			for (int i = 0; i < matrix.length; i++) {
 				for (int j = 0; j < matrix[i].length; j++) {
 					System.out.print(matrix[i][j] + " ");
 				}
 				System.out.println();
 			}
-
 			return matrix;
 		}
 
